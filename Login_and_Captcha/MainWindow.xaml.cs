@@ -22,6 +22,7 @@ namespace Login_and_Captcha
     public partial class MainWindow : Window
     {
         string pathAuto = @"auto.txt";
+        //ссылка на автоматический вход по сохраненным данным 
         public MainWindow()
         {
             InitializeComponent();
@@ -29,22 +30,28 @@ namespace Login_and_Captcha
             {
                 loginText.Text = File.ReadLines("auto.txt").First();
                 passwordText.Password = File.ReadLines("auto.txt").Skip(1).First();
+                //автоматическое прописание данных из файла
             }
             catch { }
         }
 
         private void loginB_Click(object sender, RoutedEventArgs e)
         {
+            passwordText.Password = passwordText2.Text;
             WorkBD f = new WorkBD();
             Captcha c = new Captcha();
+            //указание класс работающий с бд, с капчей
             c.ShowDialog();
+            //отркытие капчи при авторизации
             if (c.DialogResult == true)
             {
                 if (f.userHave(loginText.Text, passwordText.Password))
+                    //проверка логина и пароля
                 {
                     Menu m = new Menu();
                     string title = "null";
                     switch (f.getPerm(loginText.Text))
+                        //проверка роли польз
                     {
                         case "заказчик":
                             title = "Экран заказчика";
@@ -65,6 +72,7 @@ namespace Login_and_Captcha
                     m.Title = title;
                     m.Show();
                     using (FileStream fs = File.Create(pathAuto))
+                        //автоматическое заполнение данных логина и пароля
                     {
                         byte[] info = new UTF8Encoding(true).GetBytes($"{loginText.Text}\n{passwordText.Password}");
                         // Add some information to the file.
@@ -83,6 +91,7 @@ namespace Login_and_Captcha
         }
 
         private void RegB_Click(object sender, RoutedEventArgs e)
+            //переход на рег
         {
             Reg reg = new Reg();
             reg.Show();
@@ -91,24 +100,30 @@ namespace Login_and_Captcha
 
 
 
-        private void passV_MouseDown(object sender, MouseButtonEventArgs e)
+        private void passwordText_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            passwordText2.Text = passwordText.Password.ToString();
+            passwordText2.Text = passwordText.Password;
+        }
+
+
+        private void passwordText2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+        }
+
+        private void checkPass_Unchecked(object sender, RoutedEventArgs e)
+        {
+            passwordText.Password = passwordText2.Text;
+            passwordText.Visibility = Visibility.Visible;
+            passwordText2.Visibility = Visibility.Hidden;
+            
+        }
+
+        private void checkPass_Checked(object sender, RoutedEventArgs e)
+        {
             passwordText.Visibility = Visibility.Hidden;
             passwordText2.Visibility = Visibility.Visible;
         }
-
-        private void passV_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            passwordText.Visibility = Visibility.Visible;
-            passwordText2.Visibility = Visibility.Hidden;
-        }
-
-        private void passV_MouseLeave(object sender, MouseEventArgs e)
-        {
-            passwordText.Visibility = Visibility.Visible;
-            passwordText2.Visibility = Visibility.Hidden;
-        }
+        //создание видимости пароля
 
     }
 }

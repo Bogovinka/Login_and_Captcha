@@ -762,6 +762,21 @@
             Provides shorthand to initialise a new <see cref="T:MaterialDesignThemes.Wpf.SnackbarMessageQueue"/> for a <see cref="T:MaterialDesignThemes.Wpf.Snackbar"/>.
             </summary>
         </member>
+        <member name="F:MaterialDesignThemes.Wpf.NavigationBarAssist.CornerRadiusProperty">
+            <summary>
+            Controls the corner radius of the selection box.
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.NavigationDrawerAssist.CornerRadiusProperty">
+            <summary>
+            Controls the corner radius of the selection box.
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.NavigationRailAssist.CornerRadiusProperty">
+            <summary>
+            Controls the corner radius of the selection box.
+            </summary>
+        </member>
         <member name="F:MaterialDesignThemes.Wpf.NavigationRailAssist.FloatingContentProperty">
             <summary>
             Floating Content (ex: Button) on navigation rail (optional)
@@ -998,6 +1013,16 @@
         <member name="P:MaterialDesignThemes.Wpf.PopupBox.PopupVerticalOffset">
             <summary>
             Get or sets the popup vertical offset in relation to the button.
+            </summary>
+        </member>
+        <member name="F:MaterialDesignThemes.Wpf.PopupBox.PopupUniformCornerRadiusProperty">
+            <summary>
+            Get or sets the corner radius of the popup card.
+            </summary>
+        </member>
+        <member name="P:MaterialDesignThemes.Wpf.PopupBox.PopupUniformCornerRadius">
+            <summary>
+            Get or sets the corner radius of the popup card.
             </summary>
         </member>
         <member name="P:MaterialDesignThemes.Wpf.PopupBox.PopupPlacementMethod">

@@ -10,7 +10,11 @@ namespace Login_and_Captcha
     class WorkBD
     {
         string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DatabaseLogins.mdf;Integrated Security=True";
+        //строка подключения к бд
+
         public string getPerm(string login)
+        //получение роли
+
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -24,6 +28,8 @@ namespace Login_and_Captcha
             
         }
         public bool userHave(string login)
+        //проверка на наличие одинакового логина
+
         {
             int count = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -37,6 +43,8 @@ namespace Login_and_Captcha
             }
         }
         public bool userHave(string login, string pass)
+        //проверка на наличие такого же логина и пароля
+
         {
             int count = 0;
             using (SqlConnection connection = new SqlConnection(connectionString))

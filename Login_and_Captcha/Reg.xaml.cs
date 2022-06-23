@@ -36,6 +36,7 @@ namespace Login_and_Captcha
         }
         private void nextB_Click(object sender, RoutedEventArgs e)
         {
+            passwordText.Password = passwordText3.Text;
             if (permis.Text != "")
             {
                 if (loginText.Text.Replace(" ", "").Length >= 3 )
@@ -113,13 +114,17 @@ namespace Login_and_Captcha
 
 
         private void RegB_Click(object sender, RoutedEventArgs e)
+        //вернуться назад
+
         {
             MainWindow m = new MainWindow();
             m.Show();
             this.Close();
         }
 
-        private void passwordText_KeyDown(object sender, KeyEventArgs e)
+        private void passwordCheck()
+        //проверка сложности пароля
+
         {
             string pass = passwordText.Password;
             int hardPass = 0;
@@ -133,23 +138,32 @@ namespace Login_and_Captcha
             else if (hardPass == 3) { prov.Background = new SolidColorBrush(Colors.Yellow); prov.Content = "Хороший"; }
             else if (hardPass == 4) { prov.Background = new SolidColorBrush(Colors.LightGreen); prov.Content = "Отличный"; }
         }
-        private void passV_MouseDown(object sender, MouseButtonEventArgs e)
+        private void passwordText_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            passwordText3.Text = passwordText.Password.ToString();
+            passwordText3.Text = passwordText.Password;
+            passwordCheck();
+            
+        }
+
+        private void passwordText2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+            passwordCheck();
+        }
+
+        private void checkPass_Unchecked(object sender, RoutedEventArgs e)
+        {
+            passwordText.Password = passwordText3.Text;
+            passwordText.Visibility = Visibility.Visible;
+            passwordText3.Visibility = Visibility.Hidden;
+        }
+
+        private void checkPass_Checked(object sender, RoutedEventArgs e)
+        {
             passwordText.Visibility = Visibility.Hidden;
             passwordText3.Visibility = Visibility.Visible;
         }
+        
 
-        private void passV_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            passwordText.Visibility = Visibility.Visible;
-            passwordText3.Visibility = Visibility.Hidden;
-        }
-
-        private void passV_MouseLeave(object sender, MouseEventArgs e)
-        {
-            passwordText.Visibility = Visibility.Visible;
-            passwordText3.Visibility = Visibility.Hidden;
-        }
     }
 }

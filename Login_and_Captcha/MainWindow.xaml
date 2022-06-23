@@ -1,31 +1,37 @@
 ﻿<Window x:Class="Login_and_Captcha.MainWindow"
- xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Login_and_Captcha"
         mc:Ignorable="d"
-        Title="Login" MinHeight="300" MinWidth="400" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Login" MinHeight="450" MinWidth="800" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <TextBox x:Name="loginText" materialDesign:HintAssist.Hint="Логин" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
-        <PasswordBox x:Name="passwordText" materialDesign:HintAssist.Hint="Пароль" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"></PasswordBox>
-        <TextBox x:Name="passwordText2" materialDesign:HintAssist.Hint="Пароль" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden"></TextBox>
-        <Image x:Name="passV" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" MouseDown="passV_MouseDown" MouseUp="passV_MouseUp" MouseLeave="passV_MouseLeave" Source="eye.png" Margin="10, 30, 0, 30" ></Image>
-        <Button x:Name="loginB" Grid.Column="1" Grid.Row="3" Content="Login" Click="loginB_Click"></Button>
-        <Button x:Name="RegB" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" Content="Registration" Click="RegB_Click"></Button>
-        <Image Margin="0,10,0,0" Grid.Column="1"></Image>
+        <materialDesign:Card Margin="10" materialDesign:ShadowAssist.ShadowDepth="Depth5" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label VerticalAlignment="Center" FontFamily="Microsoft JhengHei Light" HorizontalAlignment="Center" Grid.ColumnSpan="3" FontSize="36">Добро пожаловать!</Label>
+                <TextBox x:Name="loginText" Style="{StaticResource MaterialDesignOutlinedTextBox}"  materialDesign:HintAssist.Hint="Логин" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+                <PasswordBox x:Name="passwordText" PasswordChanged="passwordText_PasswordChanged" Style="{StaticResource MaterialDesignOutlinedPasswordBox}" materialDesign:HintAssist.Hint="Пароль" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"></PasswordBox>
+                <TextBox x:Name="passwordText2" TextChanged="passwordText2_TextChanged" Style="{StaticResource MaterialDesignOutlinedTextBox}" materialDesign:HintAssist.Hint="Пароль" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Visibility="Hidden"></TextBox>
+                <CheckBox x:Name="checkPass" Grid.Column="2"  Grid.Row="2" HorizontalAlignment="Left" Margin="10, 0, 0, 0" Unchecked="checkPass_Unchecked" Checked="checkPass_Checked" >Посмотреть</CheckBox>
+                <Button x:Name="loginB" Grid.ColumnSpan="2" HorizontalAlignment="Center" MinWidth="150" materialDesign:ButtonAssist.CornerRadius="0 0 25 0" Margin="10" Grid.Column="1" Grid.Row="3" Content="Войти" Click="loginB_Click"></Button>
+                <Button x:Name="RegB" Grid.ColumnSpan="2" HorizontalAlignment="Center" MinWidth="150" materialDesign:ButtonAssist.CornerRadius="0 0 0 25" Margin="10" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Content="Регистрация" Click="RegB_Click"></Button>
+                <Image Margin="0,10,0,0" Grid.Column="1"></Image>
+            </Grid>
+        </materialDesign:Card>
+
     </Grid>
 </Window>
